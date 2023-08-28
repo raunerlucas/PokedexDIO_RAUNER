@@ -1,35 +1,35 @@
-
 const pokeApi = {}
 
-function convertPokeApiDetailToPokemon(pokeDetail) {
-    const pokemon = new Pokemon()
-    pokemon.number = pokeDetail.id
-    pokemon.name = pokeDetail.name
+function pokemonApiToPokemon(pokemonDetail){
+    const pokemon = new Pokemon;
+    pokemon.num = pokemonDetail.id;
+    pokemon.name = pokemonDetail.name;
 
-    const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
+    const types = pokemonDetail.types.map((typeS) => typeS.type.name);
     const [type] = types
-
+    
     pokemon.types = types
-    pokemon.type = type
+    pokemon.typePri = type
+    
+    pokemon.img = pokemonDetail.sprites.other.dream_world.front_default;
 
-    pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
-
-    return pokemon
+    return pokemon;
 }
 
-pokeApi.getPokemonDetail = (pokemon) => {
-    return fetch(pokemon.url)
-        .then((response) => response.json())
-        .then(convertPokeApiDetailToPokemon)
+pokeApi.getPokemonsDetails = (pokemon) => {
+     return fetch(pokemon.url)
+     .then((response) => response.json())
+     .then(pokemonApiToPokemon)
 }
 
-pokeApi.getPokemons = (offset = 0, limit = 5) => {
-    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 
-    return fetch(url)
-        .then((response) => response.json())
-        .then((jsonBody) => jsonBody.results)
-        .then((pokemons) => pokemons.map(pokeApi.getPokemonDetail))
-        .then((detailRequests) => Promise.all(detailRequests))
-        .then((pokemonsDetails) => pokemonsDetails)
+pokeApi.getListOfPokemons = (offset = 0,limit = 8) =>{
+    const urlPokemonsList = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+    return fetch(urlPokemonsList)
+    .then((response) => response.json())
+    .then((jasonBody) => jasonBody.results)
+    .then((pokemons) => pokemons.map(pokeApi.getPokemonsDetails))
+    .then((detailRequets) => Promise.all(detailRequets))
+    .then((pokemonsDetails) => pokemonsDetails)
+    
 }
