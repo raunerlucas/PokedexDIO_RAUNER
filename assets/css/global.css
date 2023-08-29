@@ -15,6 +15,14 @@ body{
     min-width: 215px;
 }
 
+.btnPokemon{
+    padding: 0;
+    cursor: pointer;
+    margin: .5rem;
+    background-color: transparent;
+    border: none;
+}
+
 @media screen and (min-width: 992px){
     .content {
         max-width: 992px ;
