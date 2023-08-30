@@ -5,7 +5,7 @@ onload = function(){
 
     
     const maxRecords = 151
-    const limit = 8;
+    const limit = 10;
     let offset = 0; 
     
     

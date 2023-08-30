@@ -7,7 +7,25 @@ body{
     background-color: #f6f8fc;
 }
 
-.content{
+p {
+    text-align: center;
+    background-color: #8080806b;
+    border: 1px solid grey;
+    border-radius: 2em;
+    padding: 0.5em;
+    margin: 1em auto;
+    width: max-content;
+}
+
+h1 {
+    background-color: #8080806b;
+    border: 1px solid grey;
+    border-radius: 0 .6em;
+    padding: 0.5em;
+    width: max-content;
+}
+
+.container{
     padding: 1rem;
     background-color: #fff;
     height: 100%;
@@ -15,20 +33,54 @@ body{
     min-width: 215px;
 }
 
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
 .btnPokemon{
     padding: 0;
     cursor: pointer;
     margin: .5rem;
     background-color: transparent;
     border: none;
+    width: 10.1em;
+}
+
+a {
+    cursor: auto;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 992px){
-    .content {
+    .container {
         max-width: 992px ;
         height: auto;
         margin: 1rem auto;
         border-radius: 1rem;
     }
     
+    .content{
+        flex-direction: row-reverse;
+        text-align: center;
+    }
+
+    .content.default > #pagePokemon{
+        width: 0;
+    }
+
+    .content.default > .list {
+        width: 100%;
+    }
+
+    .content.custom > #pagePokemon {
+        width: 70%;
+        height: 100%
+    }
+
+    .content.custom > .list {
+        width: 30%;
+    }
 }

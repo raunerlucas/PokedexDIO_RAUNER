@@ -43,7 +43,7 @@ pokeApi.getPokemonsDetails = (pokemon) => {
 }
 
 
-pokeApi.getListOfPokemons = (offset = 0,limit = 8) =>{
+pokeApi.getListOfPokemons = (offset = 0,limit = 10) =>{
     const urlPokemonsList = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
     return fetch(urlPokemonsList)
     .then((response) => response.json())

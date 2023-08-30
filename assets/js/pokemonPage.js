@@ -1,7 +1,12 @@
 const pokemonPage = {}
 
+
+
+
 pokemonPage.insertHTML = (text) => {
-    document.getElementById("pagePokemon").innerHTML= text
+    const sectioPag = document.getElementById("pagePokemon")
+    sectioPag.parentNode.setAttribute("class","content custom")
+    sectioPag.innerHTML= text
 }
 
 pokemonPage.viewPokemon = (pokemon) =>{
@@ -10,35 +15,42 @@ pokemonPage.viewPokemon = (pokemon) =>{
 }
 
 function designPokemon(pokemon){
+    const movesLi = get20Moves(pokemon) 
     return `
-    <div class="${pokemon.typePri}">
+    <div class="${pokemon.typePri} cabecalhoPokemon">
         <p>${pokemon.num}</p>
         <h2>${pokemon.name}</h2>
         <img src="${pokemon.img}" alt="${pokemon.name}">
-        <h3>Tipos</h3>
         <ol>
             ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join("")}
         </ol>
     </div>
-    <div>
-        <h4>Abilidades</h4>
+    <div class="dataPokemon">
+        <h4 class="title ${pokemon.typePri}">Abilidades</h4>
         <ol>
             ${pokemon.abilities.map((ability) => `<li>${ability}</li>`).join("")}
         </ol>
 
-        <h4>Base Epx.</h4>
+        <h4 class="title ${pokemon.typePri}">Base Epx.</h4>
         <p>${pokemon.baseExp}</p>
 
-        <h4>Status base</h4>
+        <h4 class="title ${pokemon.typePri}">Status base</h4>
         <ol>
             ${pokemon.statsBase.map((stat) => `<li>${stat}</li>`).join("")}
         </ol>
 
-        <h4>Movimentos</h4>
-        <ol>
-            ${pokemon.moves.map((move) => `<li>${move}</li>`).join("")}
+        <h4 class="title ${pokemon.typePri}">Movimentos</h4>
+        <ol id="moves">
+        ${movesLi}
         </ol>
     </div>
 
     `
 }
+function get20Moves(pokemon) {
+    moveslis = "";
+    for(let i = 0; i < 20; i++) {moveslis += `<li>${pokemon.moves[i]}</li>`;}
+    return moveslis;
+    // ${pokemon.moves.map((move) => `<li>${move}</li>`).join("")}
+}
+
